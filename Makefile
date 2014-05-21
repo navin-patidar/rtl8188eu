@@ -39,7 +39,6 @@ OUTSRC_FILES :=				\
 		hal/hal_com.o		\
 		hal/odm.o		\
 		hal/odm_debug.o		\
-		hal/odm_interface.o	\
 		hal/odm_HWConfig.o	\
 		hal/odm_RegConfig8188E.o\
 		hal/odm_RTL8188E.o	\
@@ -126,7 +125,7 @@ rtk_core :=				\
 		core/rtw_sreset.o	\
 		core/rtw_sta_mgt.o	\
 		core/rtw_wlan_util.o	\
-		core/rtw_xmit.o	
+		core/rtw_xmit.o
 
 8188eu-y += $(rtk_core)
 
