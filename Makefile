@@ -47,7 +47,7 @@ OUTSRC_FILES :=				\
 		hal/rtl8188e_hal_init.o	\
 		hal/rtl8188e_mp.o	\
 		hal/rtl8188e_phycfg.o	\
-		hal/rtl8188e_rf6052.o	\
+		hal/rf.o	\
 		hal/rtl8188e_rxdesc.o	\
 		hal/rtl8188e_sreset.o	\
 		hal/rtl8188e_xmit.o	\
