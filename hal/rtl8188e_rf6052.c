@@ -17,27 +17,6 @@
  *
  *
  ******************************************************************************/
-/******************************************************************************
- *
- *
- * Module:	rtl8192c_rf6052.c	( Source C File)
- *
- * Note:	Provide RF 6052 series relative API.
- *
- * Function:
- *
- * Export:
- *
- * Abbrev:
- *
- * History:
- * Data			Who		Remark
- *
- * 09/25/2008	MHC		Create initial version.
- * 11/05/2008	MHC		Add API for tw power setting.
- *
- *
-******************************************************************************/
 
 #define _RTL8188E_RF6052_C_
 
@@ -46,20 +25,6 @@
 
 #include <rtl8188e_hal.h>
 
-/*-----------------------------------------------------------------------------
- * Function:    PHY_RF6052SetBandwidth()
- *
- * Overview:    This function is called by SetBWModeCallback8190Pci() only
- *
- * Input:       struct adapter *Adapter
- *			WIRELESS_BANDWIDTH_E	Bandwidth	20M or 40M
- *
- * Output:      NONE
- *
- * Return:      NONE
- *
- * Note:		For RF type 0222D
- *---------------------------------------------------------------------------*/
 void rtl8188e_PHY_RF6052SetBandwidth(struct adapter *Adapter,
 				     enum ht_channel_width Bandwidth)
 {
@@ -78,23 +43,6 @@ void rtl8188e_PHY_RF6052SetBandwidth(struct adapter *Adapter,
 		break;
 	}
 }
-
-/*-----------------------------------------------------------------------------
- * Function:	PHY_RF6052SetCckTxPower
- *
- * Overview:
- *
- * Input:       NONE
- *
- * Output:      NONE
- *
- * Return:      NONE
- *
- * Revised History:
- * When			Who		Remark
- * 11/05/2008	MHC		Simulate 8192series..
- *
- *---------------------------------------------------------------------------*/
 
 void
 rtl8188e_PHY_RF6052SetCckTxPower(
@@ -373,26 +321,9 @@ static void writeOFDMPowerReg88E(struct adapter *Adapter, u8 index, u32 *pValue)
 }
 
 /*-----------------------------------------------------------------------------
- * Function:	PHY_RF6052SetOFDMTxPower
- *
  * Overview:	For legacy and HY OFDM, we must read EEPROM TX power index for
  *			different channel and read original value in TX power register area from
  *			0xe00. We increase offset and original value to be correct tx pwr.
- *
- * Input:       NONE
- *
- * Output:      NONE
- *
- * Return:      NONE
- *
- * Revised History:
- * When			Who		Remark
- * 11/05/2008	MHC		Simulate 8192 series method.
- * 01/06/2009	MHC		1. Prevent Path B tx power overflow or underflow dure to
- *						A/B pwr difference or legacy/HT pwr diff.
- *						2. We concern with path B legacy/HT OFDM difference.
- * 01/22/2009	MHC		Support new EPRO format from SD3.
- *
  *---------------------------------------------------------------------------*/
 
 void
@@ -510,18 +441,14 @@ int PHY_RF6052_Config8188E(struct adapter *Adapter)
 	struct hal_data_8188e *pHalData = GET_HAL_DATA(Adapter);
 	int rtStatus = _SUCCESS;
 
-	/*  */
 	/*  Initialize general global value */
-	/*  */
-	/*  TODO: Extend RF_PATH_C and RF_PATH_D in the future */
 	if (pHalData->rf_type == RF_1T1R)
 		pHalData->NumTotalRFPath = 1;
 	else
 		pHalData->NumTotalRFPath = 2;
 
-	/*  */
 	/*  Config BB and RF */
-	/*  */
+
 	rtStatus = phy_RF6052_Config_ParaFile(Adapter);
 	return rtStatus;
 }
